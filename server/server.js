@@ -6,7 +6,7 @@ const db = require('./db/db-connection.js');
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8180;
 app.use(cors());
 app.use(express.json());
 
@@ -14,6 +14,17 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: 'Hola, from My template ExpressJS with React-Vite' });
 });
+
+// create the get request for blog posts in the endpoint '/api/posts'
+app.get('/api/posts', async (req, res) => {
+    try {
+        const { rows: posts } = await db.query('SELECT * FROM blog_posts');
+        res.send(posts);
+    } catch (e) {
+        return res.status(400).json({ e });
+    }
+});
+
 
 // create the get request for students in the endpoint '/api/students'
 app.get('/api/students', async (req, res) => {
