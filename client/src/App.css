@@ -25,7 +25,7 @@ a.navbar-brand {
   flex: 1
 }
 
-ul {
+ul, li {
   list-style-type: none;
 }
 
