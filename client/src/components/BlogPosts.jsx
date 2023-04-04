@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import Card from 'react-bootstrap/Card';
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
@@ -29,10 +29,19 @@ const Posts = () => {
         {posts.map((post) => {
             return (
                 <li key={post.blog_id}>
-                <h1>{post.title} </h1>
-                <h4>By: {post.author}</h4>
-                <p>{post.content}</p>
-                <h2>{post.highlight1}</h2>
+                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }}>
+                        <Card.Header>
+                            {post.posted}
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title>
+                                {post.title} 
+                            </Card.Title>
+                            <Card.Subtitle>
+                                By: {post.author}
+                            </Card.Subtitle>
+                        </Card.Body>
+                    </Card>
                 </li>
             )
         })}
