@@ -1,10 +1,16 @@
 
-const OnePost = ({ currentPost }) => {
+const OnePost = ({ currentPost, setCurrentPost }) => {
 
     console.log("we are in the current post", currentPost)
+    const handleAnchorClick = () => {
+        setCurrentPost(null)
+    }
     return (
         <>
-        {currentPost[0].title}
+        {currentPost.map((post) => {
+            
+        })}
+        <a href="#BlogPosts" onClick={handleAnchorClick}>Go Back</a>        
         </>
     )
 }

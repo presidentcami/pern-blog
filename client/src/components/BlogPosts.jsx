@@ -49,7 +49,7 @@ const Posts = ({ setCurrentPost }) => {
                 <li key={post.blog_id}>
                     <Card style={{ padding: '0.6em', marginTop: '0.9em' }} onClick={() =>  handleSelectedBlog(post.blog_id)}>
                         <Card.Header>
-                            {post.posted}
+                            {post.posted.slice(0, 10)}
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>
@@ -58,6 +58,7 @@ const Posts = ({ setCurrentPost }) => {
                             <Card.Subtitle>
                                 By: {post.author}
                             </Card.Subtitle>
+                            <Card.Text>{post.content.slice(0, 110)}</Card.Text>
                         </Card.Body>
                     </Card>
                 </li>
