@@ -25,6 +25,17 @@ app.get('/api/posts', async (req, res) => {
     }
 });
 
+// get one blog post
+app.get('/api/onepost/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { rows: post } = await db.query('SELECT * FROM blog_posts WHERE blog_id=$1', [id]);
+        res.send(post)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 
 // create the get request for students in the endpoint '/api/students'
 app.get('/api/students', async (req, res) => {
