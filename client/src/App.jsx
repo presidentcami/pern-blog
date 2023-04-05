@@ -4,6 +4,7 @@ import { useState } from 'react';
 import MyNavBar from './components/Navbar'
 import Posts from './components/BlogPosts'
 import OnePost from './components/OnePost';
+import AdminPostsView from './components/AdminBlogPosts';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <MyNavBar currentUser={currentUser} setCurrentUser={setCurrentUser}  />
-      {currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
+      {currentUser == 1 ? <AdminPostsView /> : currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
 
     </div>
   )
