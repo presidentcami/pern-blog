@@ -9,10 +9,12 @@ import OnePost from './components/OnePost';
 function App() {
 
   const [currentPost, setCurrentPost] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null)
 
+  console.log(currentUser)
   return (
     <div className="App">
-      <MyNavBar />
+      <MyNavBar currentUser={currentUser} setCurrentUser={setCurrentUser}  />
       {currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
 
     </div>

@@ -36,16 +36,26 @@ app.get('/api/onepost/:id', async (req, res) => {
     }
 })
 
-
-// create the get request for students in the endpoint '/api/students'
-app.get('/api/students', async (req, res) => {
+// create the get request for blog posts in the endpoint '/api/posts'
+app.get('/api/users', async (req, res) => {
     try {
-        const { rows: students } = await db.query('SELECT * FROM students');
-        res.send(students);
+        const { rows: users } = await db.query('SELECT * FROM blog_users');
+        res.send(users);
     } catch (e) {
         return res.status(400).json({ e });
     }
 });
+
+// get one blog post
+app.get('/api/oneuser/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { rows: user } = await db.query('SELECT * FROM blog_users WHERE blog_user_id=$1', [id]);
+        res.send(user)
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
 // create the POST request
 app.post('/api/students', async (req, res) => {
