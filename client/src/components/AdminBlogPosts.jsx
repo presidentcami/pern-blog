@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import OnePost from './OnePost';
 import EditForm from './EditBlog';
 import Delete from './DeleteBlog';
+import AddBlog from './AddNewBlog';
 
 const AdminPostsView = ({ setCurrentPost }) => {
 
@@ -45,6 +46,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
 
     return (
         <>
+        <AddBlog setPosts={setPosts} />
         {posts.map((post) => {
             // console.log(post.posted)
             return (
