@@ -28,7 +28,7 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
         <div className="postContainer">
         {currentPost.map((post) => {
             return(
-            <div>
+            <div key={post.blog_id}>
             <h2>{post.title}</h2>
             <h5>By {post.author}</h5>
             <p>{post.posted.slice(0, 10)} </p>
@@ -37,10 +37,10 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
         })}
             <AddComment post_id={currentPost[0].blog_id} setComments={setComments} />
             {comments.map((comment) => {
-                return (<>
+                return (<div key={comment.comment_id}>
                 <p>{comment.commenter_name}</p>
                 <p>{comment.comment_text}</p>
-                </>)
+                </div>)
             })}
         <a href="#BlogPosts" onClick={handleAnchorClick}>Go Back</a>        
         </div>

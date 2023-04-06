@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Logo from '../assets/BlueTechtonicaWord.png'
+import Logo from '../assets/CamillesBlog.gif'
 import { useState, useEffect } from 'react';
 
 
@@ -29,12 +29,12 @@ function MyNavBar({ currentUser, setCurrentUser }) {
         <Navbar.Brand href="/">
         <img
               src={Logo}
-              height="30"
+              height="40"
               className="d-lg-inline-block"
-              alt="React Bootstrap logo"
+              alt="Camille's Blog logo"
             />
         </Navbar.Brand>
-        <Nav.Link >Your Link</Nav.Link>
+        {/* <Nav.Link >Your Link</Nav.Link> */}
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
