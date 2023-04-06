@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const path = require('path');
 const db = require('./db/db-connection.js');
+const { as } = require('pg-promise');
 
 
 const app = express();
@@ -57,7 +58,7 @@ app.get('/api/oneuser/:id', async (req, res) => {
     }
 })
 
-// create the POST request
+// create the POST request to add a new blog
 app.post('/api/newblog', async (req, res) => {
     try {
         const { title, content, highlight1, highlight2, author } = req.body;
@@ -78,21 +79,20 @@ app.post('/api/newblog', async (req, res) => {
 
 });
 
-// delete request for students
-app.delete('/api/delpost/:blogid', async (req, res) => {
+// make a post request for a new comment
+app.post('/api/newcomment', async (req, res) => {
     try {
-        const {blogid} = req.params;
-        await db.query('DELETE FROM blog_posts WHERE blog_id=$1', [blogid]);
-        console.log("From the delete request-url", blogid);
-        // res.status(200).end();
-        const { rows: posts } = await db.query('SELECT * FROM blog_posts');
-        res.send(posts);
-    } catch (e) {
-        console.log(e);
-        return res.status(400).json({ e });
+        const { commenter_name, comment_text, post_id } = req.body;
 
+        const result = await db.query('INSERT INTO blog_comments (commenter_name, comment_text, post_id) VALUES($1, $2, $3) RETURNING *', 
+            [commenter_name, comment_text, post_id])
+        console.log(result.rows[0])
+        const { rows: comments } = await db.query('SELECT * FROM blog_comments');
+        res.send(comments);
+    } catch (err) {
+        console.error(err.message)
     }
-});
+})
 
 //A put request - Update a blog post 
 app.put('/api/editblogpost/:blogid', async (req, res) => {
@@ -117,6 +117,23 @@ app.put('/api/editblogpost/:blogid', async (req, res) => {
         return res.status(400).json({ e })
     }
 })
+// delete request for students
+app.delete('/api/delpost/:blogid', async (req, res) => {
+    try {
+        const {blogid} = req.params;
+        await db.query('DELETE FROM blog_posts WHERE blog_id=$1', [blogid]);
+        console.log("From the delete request-url", blogid);
+        // res.status(200).end();
+        const { rows: posts } = await db.query('SELECT * FROM blog_posts');
+        res.send(posts);
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+
+    }
+});
+
+
 
 
 // console.log that your server is up and running
