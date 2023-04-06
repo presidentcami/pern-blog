@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Card from 'react-bootstrap/Card';
 import OnePost from './OnePost';
+import EditForm from './EditBlog';
 
 const AdminPostsView = ({ setCurrentPost }) => {
 
@@ -49,7 +50,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
                 <li key={post.blog_id}>
                     <Card style={{ padding: '0.6em', marginTop: '0.9em' }}>
                         <Card.Header>
-                            {post.posted.slice(0, 10)}
+                            Posted: {post.posted.slice(0, 10)} Last Edit: {post.edited}
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>
@@ -58,7 +59,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
                             <Card.Subtitle>
                                 By: {post.author}
                             </Card.Subtitle>
-                            <p>Edit</p>
+                            <EditForm post={post} setPosts={setPosts} />
                             <p>Delete</p>
                         </Card.Body>
                     </Card>

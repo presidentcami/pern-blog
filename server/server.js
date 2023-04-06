@@ -94,27 +94,30 @@ app.delete('/api/students/:studentId', async (req, res) => {
     }
 });
 
-//A put request - Update a student 
-app.put('/api/students/:studentId', async (req, res) =>{
+//A put request - Update a blog post 
+app.put('/api/editblogpost/:blogid', async (req, res) => {
     //console.log(req.params);
-    //This will be the id that I want to find in the DB - the student to be updated
-    const studentId = req.params.studentId
-    const updatedStudent = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname, iscurrent: req.body.is_current}
-    console.log("In the server from the url - the student id", studentId);
-    console.log("In the server, from the react - the student to be edited", updatedStudent);
+
+    const { blogid } = req.params
+    const { title, content, highlight1, highlight2, author, edited } = req.body;
+
+    console.log("In the server from the url - the blog id", blogid);
+    console.log("In the server, from the react - the blog to be edited", req.body);
     // UPDATE students SET lastname = "something" WHERE id="16";
-    const query = `UPDATE students SET firstname=$1, lastname=$2, is_current=$3 WHERE id=${studentId} RETURNING *`;
-    const values = [updatedStudent.firstname, updatedStudent.lastname, updatedStudent.iscurrent];
+    const query = `UPDATE blog_posts SET title=$1, content=$2, highlight1=$3, highlight2=$4, author=$5, edited=$6 WHERE blog_id=${blogid} RETURNING *`;
+    const values = [title, content, highlight1, highlight2, author, edited];
     try {
-      const updated = await db.query(query, values);
-      console.log(updated.rows[0]);
-      res.send(updated.rows[0]);
-  
-    }catch(e){
-      console.log(e);
-      return res.status(400).json({e})
+        const updated = await db.query(query, values);
+        console.log(updated.rows[0]);
+
+        const { rows: posts } = await db.query('SELECT * FROM blog_posts');
+        res.send(posts);
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e })
     }
-  })
+})
+
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
