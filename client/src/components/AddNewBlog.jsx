@@ -52,8 +52,8 @@ const AddBlog = ({ setPosts }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            fetch(`http://localhost:8180/api/editblogpost/${blog_id}`, {
-                method: "PUT",
+            fetch('http://localhost:8180/api/newblog/', {
+                method: "POST",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
@@ -127,16 +127,6 @@ const AddBlog = ({ setPosts }) => {
                         value={state.author}
                         onChange={inputAction}
                     />
-                    <div><label>Date Updated</label></div>
-                    <div>
-                    <input
-                        type="date"
-                        id="add-date-edited"
-                        name="edited"
-                        required
-                        onChange={inputAction}
-                    />
-                    </div>
                     <section>
                         <Button type="submit" variant="outline-success" style={{ padding: '0.6em', marginTop: '0.9em' }}>Submit New Post</Button>
                         <Button type="button" variant="outline-warning" onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
