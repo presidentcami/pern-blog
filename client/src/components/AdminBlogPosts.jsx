@@ -32,18 +32,6 @@ const AdminPostsView = ({ setCurrentPost }) => {
         return (postA > postB) ? -1 : (postA < postB) ? 1 : 0;
     })
 
-//     const handleSelectedBlog = (id) => {
-//         // e.preventDefault()
-//         console.log(id)
-//         fetch(`http://localhost:8180/api/onepost/${id}`)
-//         .then((response) => response.json())
-//         .then((post) => {
-//             setCurrentPost(post);
-//             console.log("currentpost", post)
-//         });
-// }
-    
-
     return (
         <>
         <AddBlog setPosts={setPosts} />
@@ -51,7 +39,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
             // console.log(post.posted)
             return (
                 <li key={post.blog_id}>
-                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }}>
+                    <Card className='onClick' style={{ padding: '0.6em', marginTop: '0.9em' }}>
                         <Card.Header>
                             Posted: {post.posted.slice(0, 10)} Last Edit: {post.edited}
                         </Card.Header>

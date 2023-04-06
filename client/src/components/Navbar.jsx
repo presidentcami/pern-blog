@@ -30,6 +30,7 @@ function MyNavBar({ currentUser, setCurrentUser }) {
         <img
               src={Logo}
               height="40"
+              style={{ borderRadius: '40px' }}
               className="d-lg-inline-block"
               alt="Camille's Blog logo"
             />

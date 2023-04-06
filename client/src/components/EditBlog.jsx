@@ -84,8 +84,6 @@ const EditForm = ({ post, setPosts }) => {
 
     return (
         <>
-            <Button variant="outline-info" aria-label="Edit contact" onClick={handleShow} style={{ padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> <ioicons.IoCreateOutline /> </Button>
-
             {show ? <>
                 <form onSubmit={handleSubmit} id="editContactsForm">
                     <h3>Edit Post</h3>
@@ -146,7 +144,7 @@ const EditForm = ({ post, setPosts }) => {
                         <Button type="button" variant="outline-warning" onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
                     </section>
                 </form>
-            </> : null}
+            </> : <Button className='functionalButton' variant="outline" aria-label="Edit contact" onClick={handleShow} style={{ padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> <ioicons.IoCreateOutline /> </Button>}
 
 
         </>

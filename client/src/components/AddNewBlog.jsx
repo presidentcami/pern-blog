@@ -80,9 +80,8 @@ const AddBlog = ({ setPosts }) => {
 
     return (
         <>
-            <Button variant="outline-info" aria-label="Add Blog" onClick={handleShow} style={{ alignContent: 'center', width: '50em', padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> Add a New Blog </Button>
-
-            {show && <>
+            
+            {show ? <>
                 <form onSubmit={handleSubmit} id="addNewBlogForm">
                     <h3>Add New Post</h3>
                     <div><label>Title</label></div>
@@ -132,7 +131,8 @@ const AddBlog = ({ setPosts }) => {
                         <Button type="button" variant="outline-warning" onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
                     </section>
                 </form>
-            </>}
+            </> : <Button id="add-blog" className='functionalButton' variant="outline" aria-label="Add Blog" onClick={handleShow} style={{ padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> Add a New Blog </Button>
+}
 
 
         </>

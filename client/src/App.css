@@ -1,7 +1,8 @@
 .App {
   min-height: 100vh;
-  background-color: rgb(238, 232, 232);
+  background-color: #232946;
   margin: 5px;
+  color: #b8c1ec;
 }
 
 .mybody {
@@ -11,13 +12,9 @@
 }
 
 a.navbar-brand {
-  margin-inline-start: -5em;
+  margin-inline-start: -0.2em;
 }
 
-.nav-link {
-  color: white !important;
-  margin-left: 5em;
-}
 
 .list-students {
   text-align: center;
@@ -27,6 +24,24 @@ a.navbar-brand {
 
 ul, li {
   list-style-type: none;
+}
+
+.onClick {
+  cursor: pointer;
+  width: 60em;
+  margin-left: 10em;
+  background-color: #b8c1ec !important;
+  color:#232946;
+}
+
+#add-blog {
+  margin-left: 10em;
+}
+
+.functionalButton {
+  color: #eebbc3 !important;
+  outline-color: #eebbc3 !important;
+  background-color: #232946 !important;
 }
 
 .postContainer {

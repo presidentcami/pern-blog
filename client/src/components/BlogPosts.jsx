@@ -43,11 +43,12 @@ const Posts = ({ setCurrentPost }) => {
 
     return (
         <>
+        <h1 style={{marginLeft: '5em'}}>Blogs</h1>
         {posts.map((post) => {
             // console.log(post.posted)
             return (
                 <li key={post.blog_id}>
-                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }} onClick={() =>  handleSelectedBlog(post.blog_id)}>
+                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }} className='onClick' onClick={() =>  handleSelectedBlog(post.blog_id)}>
                         <Card.Header>
                             {post.posted.slice(0, 10)}
                         </Card.Header>
