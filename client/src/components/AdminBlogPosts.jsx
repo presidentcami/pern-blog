@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import Card from 'react-bootstrap/Card';
 import OnePost from './OnePost';
 import EditForm from './EditBlog';
+import Delete from './DeleteBlog';
 
 const AdminPostsView = ({ setCurrentPost }) => {
 
@@ -60,7 +61,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
                                 By: {post.author}
                             </Card.Subtitle>
                             <EditForm post={post} setPosts={setPosts} />
-                            <p>Delete</p>
+                            <Delete id={post.blog_id} setPosts={setPosts} />
                         </Card.Body>
                     </Card>
                 </li>
