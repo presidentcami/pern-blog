@@ -16,7 +16,8 @@ function App() {
   return (
     <div className="App">
       <MyNavBar currentUser={currentUser} setCurrentUser={setCurrentUser}  />
-      {currentUser == 1 ? <AdminPostsView /> : currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
+      
+      {!currentUser ? null : currentUser == 1 ? <AdminPostsView /> : currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
 
     </div>
   )
