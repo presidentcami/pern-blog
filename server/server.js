@@ -86,7 +86,9 @@ app.delete('/api/delpost/:blogid', async (req, res) => {
         const {blogid} = req.params;
         await db.query('DELETE FROM blog_posts WHERE blog_id=$1', [blogid]);
         console.log("From the delete request-url", blogid);
-        res.status(200).end();
+        // res.status(200).end();
+        const { rows: posts } = await db.query('SELECT * FROM blog_posts');
+        res.send(posts);
     } catch (e) {
         console.log(e);
         return res.status(400).json({ e });

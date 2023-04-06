@@ -25,9 +25,9 @@ const Delete = ({id, setPosts}) => {
             console.err(err.message)
         }
     }
-// onClick={deleteRequest}
+
     return (
-        <Button variant="outline-danger" aria-label="Delete post"  style={{padding: '0.6em', marginRight:'0.9em', marginTop:'0.3em'}}><ioicons.IoTrash/></Button>
+        <Button variant="outline-danger" aria-label="Delete post" onClick={deleteRequest} style={{padding: '0.6em', marginRight:'0.9em', marginTop:'0.3em'}}><ioicons.IoTrash/></Button>
     )
 
 }
