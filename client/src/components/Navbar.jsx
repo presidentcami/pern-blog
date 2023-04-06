@@ -39,11 +39,10 @@ function MyNavBar({ currentUser, setCurrentUser }) {
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             Sign in as: 
-              <select onChange={(e) => setCurrentUser(e.target.value)} >
+              <select style={{ marginLeft: '0.9em' }} onChange={(e) => setCurrentUser(e.target.value)} >
                 <option></option>
                     {users.map((user) => <option key={user.blog_user_id} value={user.blog_user_id} >{user.blog_username}</option>)}
                 </select>
-            {/* <a href="#login">Cristina Rodriguez</a> */}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
