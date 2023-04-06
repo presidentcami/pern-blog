@@ -83,7 +83,7 @@ app.post('/api/newblog', async (req, res) => {
 app.post('/api/newcomment', async (req, res) => {
     try {
         const { commenter_name, comment_text, post_id } = req.body;
-
+        console.log(req.body)
         const result = await db.query('INSERT INTO blog_comments (commenter_name, comment_text, post_id) VALUES($1, $2, $3) RETURNING *', 
             [commenter_name, comment_text, post_id])
         console.log(result.rows[0])

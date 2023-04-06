@@ -1,7 +1,14 @@
+import AddComment from "./AddComment"
+import {useState} from 'react'
 
 const OnePost = ({ currentPost, setCurrentPost }) => {
 
+    const [comments, setComments] = useState([])
     console.log("we are in the current post", currentPost)
+
+    // need a fetch request to get the comments from the database
+
+
     const handleAnchorClick = () => {
         setCurrentPost(null)
     }
@@ -16,6 +23,13 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
             <p>{post.content}</p>
             </div>)
         })}
+            <AddComment post_id={currentPost[0].blog_id} setComments={setComments} />
+            {comments.map((comment) => {
+                return (<>
+                <p>{comment.commenter_name}</p>
+                <p>{comment.comment_text}</p>
+                </>)
+            })}
         <a href="#BlogPosts" onClick={handleAnchorClick}>Go Back</a>        
         </div>
     )
