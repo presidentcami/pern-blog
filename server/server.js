@@ -94,6 +94,17 @@ app.post('/api/newcomment', async (req, res) => {
     }
 })
 
+// make a get request for all comments
+
+app.get('/api/comments', async (req, res) => {
+    try {
+        const { rows: comments } = await db.query('SELECT * FROM blog_comments');
+        res.send(comments);
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
 //A put request - Update a blog post 
 app.put('/api/editblogpost/:blogid', async (req, res) => {
     //console.log(req.params);

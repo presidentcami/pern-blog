@@ -1,5 +1,5 @@
 import AddComment from "./AddComment"
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 
 const OnePost = ({ currentPost, setCurrentPost }) => {
 
@@ -7,7 +7,19 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
     console.log("we are in the current post", currentPost)
 
     // need a fetch request to get the comments from the database
+    const loadComments = () => {
+        // A function to fetch the list of students that will be load anytime that list change
+        fetch("http://localhost:8180/api/comments")
+            .then((response) => response.json())
+            .then((comments) => {
+                console.log(comments)
+                setComments(comments);
+            });
+    }
 
+    useEffect(() => {
+        loadComments();
+    }, []);
 
     const handleAnchorClick = () => {
         setCurrentPost(null)
