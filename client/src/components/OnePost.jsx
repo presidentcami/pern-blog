@@ -12,8 +12,8 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
         fetch("http://localhost:8180/api/comments")
             .then((response) => response.json())
             .then((comments) => {
-                console.log(comments)
-                setComments(comments);
+                console.log('comments we are fetching', comments)
+                setComments(comments.filter((comment) => comment.post_id == currentPost[0].blog_id));
             });
     }
 
