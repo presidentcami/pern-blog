@@ -28,12 +28,15 @@ ul, li {
 
 .onClick {
   cursor: pointer;
-  width: 60em;
-  margin-left: 10em;
-  background-color: #b8c1ec !important;
-  color:#232946;
+  
 }
 
+.card {
+  width: 60em;
+    margin-left: 10em;
+    background-color: #b8c1ec !important;
+    color: #232946;
+}
 #add-blog {
   margin-left: 10em;
 }

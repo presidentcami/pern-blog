@@ -48,7 +48,7 @@ const Posts = ({ setCurrentPost }) => {
             // console.log(post.posted)
             return (
                 <li key={post.blog_id}>
-                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }} className='onClick' onClick={() =>  handleSelectedBlog(post.blog_id)}>
+                    <Card style={{ padding: '0.6em', marginTop: '0.9em' }} className='onClick card' onClick={() =>  handleSelectedBlog(post.blog_id)}>
                         <Card.Header>
                             {post.posted.slice(0, 10)}
                         </Card.Header>

@@ -39,7 +39,7 @@ const AdminPostsView = ({ setCurrentPost }) => {
             // console.log(post.posted)
             return (
                 <li key={post.blog_id}>
-                    <Card className='onClick' style={{ padding: '0.6em', marginTop: '0.9em' }}>
+                    <Card className="card" style={{ padding: '0.6em', marginTop: '0.9em' }}>
                         <Card.Header>
                             Posted: {post.posted.slice(0, 10)} Last Edit: {post.edited}
                         </Card.Header>
