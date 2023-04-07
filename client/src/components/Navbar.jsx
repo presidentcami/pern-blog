@@ -5,9 +5,8 @@ import Logo from '../assets/CamillesBlog.gif'
 import { useState, useEffect } from 'react';
 
 
-function MyNavBar({ currentUser, setCurrentUser }) {
+function MyNavBar({ currentUser, users, setUsers, setCurrentUser }) {
 
-  const [users, setUsers] = useState([])
   const fetchUsers =() => {
     fetch("http://localhost:8180/api/users")
       .then((response) => response.json())

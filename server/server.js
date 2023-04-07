@@ -58,6 +58,30 @@ app.get('/api/oneuser/:id', async (req, res) => {
     }
 })
 
+// create the POST request to add a new user
+app.post('/api/newuser', async (req, res) => {
+    try {
+        const { blog_username } = req.body;
+
+        //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
+        const result = await db.query(
+            'INSERT INTO blog_users(blog_username) VALUES($1) RETURNING *',
+            [blog_username],
+        );
+        console.log(result.rows[0]);
+        // res.json(result.rows[0]);
+
+        const { rows: users } = await db.query('SELECT * FROM blog_users');
+        res.send(users)
+
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+    }
+
+});
+
+
 // create the POST request to add a new blog
 app.post('/api/newblog', async (req, res) => {
     try {
