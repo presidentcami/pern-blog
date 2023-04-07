@@ -122,7 +122,8 @@ app.post('/api/newcomment', async (req, res) => {
         const result = await db.query('INSERT INTO blog_comments (commenter_name, comment_text, post_id, user_id) VALUES($1, $2, $3, $4) RETURNING *', 
             [commenter_name, comment_text, post_id, user_id])
         console.log("result.rows[0]", result.rows[0])
-        const { rows: comments } = await db.query('SELECT comment_text, comment_posted, post_id, blog_username FROM blog_comments JOIN blog_users ON post_id=$1', [post_id]);
+        const { rows: comments } = await db.query('SELECT * FROM blog_comments JOIN blog_users ON user_id=blog_user_id WHERE post_id=$1', [post_id]);
+            // 'SELECT comment_text, comment_posted, post_id, blog_username FROM blog_comments JOIN blog_users ON post_id=$1'
         console.log("all comments - result from query", comments)
         res.send(comments);
     } catch (err) {

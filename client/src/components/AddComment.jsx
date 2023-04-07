@@ -51,10 +51,11 @@ const AddComment = ({ setComments, post_id, currentUser }) => {
                 .then((response) => response.json())
                 .then(comments => {
                     // got this Map code from https://stackoverflow.com/a/58429784/20649462 and tested it out https://replit.com/@presidentcami/SpitefulGloriousMedian-1#index.js
-                    const onlyUniqueComments = [...new Map(comments.map(item =>
-                        [item['comment_text'], item])).values()];
+                    // fixed query so didn't end up needing it 
+                    // const onlyUniqueComments = [...new Map(comments.map(item =>
+                    //     [item['comment_text'], item])).values()];
 
-                    setComments(onlyUniqueComments);
+                    setComments(comments);
                     console.log('Comments fetched when new comment is added', comments);
                 })
                 dispatch ({ type: 'reset', initialValue })

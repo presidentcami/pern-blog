@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Card from 'react-bootstrap/Card';
+import * as ioicons from 'react-icons/io5'
 
 const Posts = ({ setCurrentPost }) => {
 
     const [posts, setPosts] = useState([])
-    const commentsByPostId = {}
+  
 
     const loadPosts = () => {
+        const commentsByPostId = {}
         fetch("http://localhost:8180/api/comments")
             .then((response) => response.json())
             .then((comments) => {
                 console.log('comments we are fetching', comments)
+                
                 comments.forEach((comment) => {
                     if (!commentsByPostId[comment.post_id]) {
                         commentsByPostId[comment.post_id] = [];
@@ -83,7 +86,7 @@ const Posts = ({ setCurrentPost }) => {
                                 By: {post.author}
                             </Card.Subtitle>
                             <Card.Text>{post.content.slice(0, 110)}</Card.Text>
-                            <Card.Text>{post.comments.length}</Card.Text>
+                            <Card.Text><ioicons.IoChatboxSharp style={{ fontSize: '24px', marginRight: '0.2em'}} />{post.comments.length}</Card.Text>
                         </Card.Body>
                     </Card>
                 </li>
