@@ -21,6 +21,13 @@ const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
         loadComments();
     }, []);
 
+    // function to put the comments on screen in order by most recent to oldest
+    comments.sort(function (a, b) {
+        let postA = a.comment_posted;
+        let postB = b.comment_posted;
+        return (postA > postB) ? -1 : (postA < postB) ? 1 : 0;
+    })
+
     const handleGoBackClick = () => {
         setCurrentPost(null)
     }
