@@ -13,7 +13,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [currentPost, setCurrentPost] = useState(null)
   const [currentUser, setCurrentUser] = useState(null)
-
+  
   console.log(currentUser)
   return (
     <div className="App">

@@ -47,7 +47,9 @@ const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
             {comments.map((comment) => {
                 let t = comment.comment_posted.split(/[- :TZ]/)
                 let d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleString();
-                return (<div key={comment.comment_id} className="comment-card">
+                
+                return (
+                <div key={comment.comment_id} className="comment-card">
                 <p>{comment.comment_text}</p>
                 <p style={{ fontSize: '12px'}} >{comment.blog_username} {d}</p>
                 </div>)

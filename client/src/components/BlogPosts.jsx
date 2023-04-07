@@ -1,20 +1,41 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Card from 'react-bootstrap/Card';
-import OnePost from './OnePost';
 
 const Posts = ({ setCurrentPost }) => {
 
     const [posts, setPosts] = useState([])
-    // const [selectedBlog, setSelectedBlog] = useState(null)
+    const commentsByPostId = {}
 
     const loadPosts = () => {
-        // A function to fetch the list of students that will be load anytime that list change
-        fetch("http://localhost:8180/api/posts")
+        fetch("http://localhost:8180/api/comments")
             .then((response) => response.json())
-            .then((posts) => {
-                console.log(posts)
-                setPosts(posts);
+            .then((comments) => {
+                console.log('comments we are fetching', comments)
+                comments.forEach((comment) => {
+                    if (!commentsByPostId[comment.post_id]) {
+                        commentsByPostId[comment.post_id] = [];
+                    }
+                    commentsByPostId[comment.post_id].push(comment)
+                })
+                console.log('comments by post id from comments fetch request', commentsByPostId)
+            })
+            .then(() => {
+                fetch("http://localhost:8180/api/posts")
+                    .then((response) => response.json())
+                    .then((posts) => {
+                        const postsWithComments = []
+                        posts.forEach((post) => {
+                            post.comments = commentsByPostId[post.blog_id]
+                            postsWithComments.push(post)
+                        })
+
+                        console.log("posts with comments obj", postsWithComments)
+                        setPosts(postsWithComments);
+                    });
             });
+            
+        // A function to fetch the list of students that will be load anytime that list change
+
     }
 
     useEffect(() => {
@@ -47,12 +68,12 @@ const Posts = ({ setCurrentPost }) => {
         {posts.map((post) => {
             // console.log(post.posted)
             let t = post.posted.split(/[- :TZ]/)
-            let d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleDateString();
+            let date = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleDateString();
             return (
                 <li key={post.blog_id}>
                     <Card style={{ padding: '0.6em', marginTop: '0.9em' }} className='onClick card' onClick={() =>  handleSelectedBlog(post.blog_id)}>
                         <Card.Header>
-                            {d}
+                            {date}
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>
@@ -62,6 +83,7 @@ const Posts = ({ setCurrentPost }) => {
                                 By: {post.author}
                             </Card.Subtitle>
                             <Card.Text>{post.content.slice(0, 110)}</Card.Text>
+                            <Card.Text>{post.comments.length}</Card.Text>
                         </Card.Body>
                     </Card>
                 </li>
