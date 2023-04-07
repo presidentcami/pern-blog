@@ -21,9 +21,10 @@ const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
         loadComments();
     }, []);
 
-    const handleAnchorClick = () => {
+    const handleGoBackClick = () => {
         setCurrentPost(null)
     }
+
     return (
         <div className="postContainer">
         {currentPost.map((post) => {
@@ -37,12 +38,14 @@ const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
         })}
             <AddComment post_id={currentPost[0].blog_id} setComments={setComments} currentUser={currentUser} />
             {comments.map((comment) => {
+                let t = comment.comment_posted.split(/[- :TZ]/)
+                let d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleString();
                 return (<div key={comment.comment_id} className="comment-card">
-                <p>{comment.blog_username}</p>
                 <p>{comment.comment_text}</p>
+                <p style={{ fontSize: '12px'}} >{comment.blog_username} {d}</p>
                 </div>)
             })}
-        <a href="#BlogPosts" onClick={handleAnchorClick}>Go Back</a>        
+        <a href="#BlogPosts" onClick={handleGoBackClick}>Go Back</a>        
         </div>
     )
 }

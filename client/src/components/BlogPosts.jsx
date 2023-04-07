@@ -46,11 +46,13 @@ const Posts = ({ setCurrentPost }) => {
         <h1 style={{marginLeft: '5em'}}>Blogs</h1>
         {posts.map((post) => {
             // console.log(post.posted)
+            let t = post.posted.split(/[- :TZ]/)
+            let d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleDateString();
             return (
                 <li key={post.blog_id}>
                     <Card style={{ padding: '0.6em', marginTop: '0.9em' }} className='onClick card' onClick={() =>  handleSelectedBlog(post.blog_id)}>
                         <Card.Header>
-                            {post.posted.slice(0, 10)}
+                            {d}
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>

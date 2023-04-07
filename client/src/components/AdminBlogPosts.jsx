@@ -37,11 +37,14 @@ const AdminPostsView = ({ setCurrentPost }) => {
         <AddBlog setPosts={setPosts} />
         {posts.map((post) => {
             // console.log(post.posted)
+            let t = post.posted.split(/[- :TZ]/)
+            let d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])).toLocaleDateString();
+
             return (
                 <li key={post.blog_id}>
                     <Card className="card" style={{ padding: '0.6em', marginTop: '0.9em' }}>
                         <Card.Header>
-                            Posted: {post.posted.slice(0, 10)} Last Edit: {post.edited}
+                            Posted: {d} Last Edit: {post.edited}
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>
