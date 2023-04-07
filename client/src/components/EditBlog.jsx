@@ -140,8 +140,8 @@ const EditForm = ({ post, setPosts }) => {
                     />
                     </div>
                     <section>
-                        <Button type="submit" variant="outline-success" style={{ padding: '0.6em', marginTop: '0.9em' }}>Submit Changes</Button>
-                        <Button type="button" variant="outline-warning" onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
+                        <Button type="submit" variant="outline" className='functionalButton' style={{ padding: '0.6em', marginTop: '0.9em', marginRight: '0.5em' }}>Submit Changes</Button>
+                        <Button type="button" variant="outline" className='functionalButton' onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
                     </section>
                 </form>
             </> : <Button className='functionalButton' variant="outline" aria-label="Edit contact" onClick={handleShow} style={{ padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> <ioicons.IoCreateOutline /> </Button>}

@@ -36,7 +36,7 @@ const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
         <div className="postContainer">
         {currentPost.map((post) => {
             return(
-            <div key={post.blog_id}>
+            <div key={post.blog_id} className="singlePost">
             <h2>{post.title}</h2>
             <h5>By {post.author}</h5>
             <p>{post.posted.slice(0, 10)} </p>

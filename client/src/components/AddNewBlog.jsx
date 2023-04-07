@@ -127,8 +127,8 @@ const AddBlog = ({ setPosts }) => {
                         onChange={inputAction}
                     />
                     <section>
-                        <Button type="submit" variant="outline-success" style={{ padding: '0.6em', marginTop: '0.9em' }}>Submit New Post</Button>
-                        <Button type="button" variant="outline-warning" onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
+                        <Button type="submit" variant="outline" className='functionalButton' style={{ padding: '0.6em', marginTop: '0.9em' }}>Submit New Post</Button>
+                        <Button type="button" variant="outline" className='functionalButton' onClick={handleClose} style={{ padding: '0.6em', marginTop: '0.9em' }}>Cancel</Button>
                     </section>
                 </form>
             </> : <Button id="add-blog" className='functionalButton' variant="outline" aria-label="Add Blog" onClick={handleShow} style={{ padding: '0.6em', marginRight: '0.9em', marginTop: '0.3em' }}> Add a New Blog </Button>

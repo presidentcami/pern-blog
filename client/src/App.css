@@ -13,7 +13,7 @@
 }
 
 a.navbar-brand {
-  margin-inline-start: -0.2em;
+  margin-inline-start: -12em;
 }
 
 h1, h2, h3, h4 {
@@ -48,10 +48,18 @@ ul, li {
     background-color: #b8c1ec !important;
     color: #232946;
 }
+
 #add-blog {
   margin-left: 10em;
 }
 
+#addNewBlogForm {
+  margin-left: 10em;
+}
+
+#addNewBlogForm.input[type=text] {
+  width: 25%
+}
 .functionalButton {
   color: #eebbc3 !important;
   outline-color: #eebbc3 !important;
@@ -59,7 +67,11 @@ ul, li {
 }
 
 .postContainer {
-  margin: 20px;
+  margin: 2em;
+}
+
+.singlePost {
+  margin-right: 15em;
 }
 
 .comment-card {
