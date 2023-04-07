@@ -22,7 +22,7 @@ const reducer = (state, action) => {
     }
 };
 
-const AddComment = ({ setComments, post_id }) => {
+const AddComment = ({ setComments, post_id, currentUser }) => {
 
     const [state, dispatch] = useReducer(reducer, initialValue);
     const [show, setShow] = useState(false);
@@ -41,7 +41,7 @@ const AddComment = ({ setComments, post_id }) => {
             type: 'add',
             payload: { key: event.target.name, value: event.target.value },
         });
-        console.log({...state, post_id: post_id})
+        console.log({...state, post_id: post_id, user_id: currentUser })
     };
 
     //A function to handle the post request
@@ -55,12 +55,15 @@ const AddComment = ({ setComments, post_id }) => {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ ...state, post_id: post_id }),
+                body: JSON.stringify({ ...state, post_id: post_id, user_id: currentUser }),
             })
                 .then((response) => response.json())
-                .then(comment => {
-                    setComments(comment);
-                    console.log('Comments fetched when new comment is added', comment);
+                .then(comments => {
+                    // got this Map code from https://stackoverflow.com/a/58429784/20649462 and tested it out https://replit.com/@presidentcami/SpitefulGloriousMedian-1#index.js
+                    const onlyUniqueComments = [...new Map(comments.map(item =>
+                        [item['comment_text'], item])).values()];
+                    setComments(onlyUniqueComments);
+                    console.log('Comments fetched when new comment is added', comments);
                     handleClose()
                 })
                 dispatch ({ type: 'reset', initialValue })

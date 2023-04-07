@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <MyNavBar currentUser={currentUser} setCurrentUser={setCurrentUser}  />
       
-      {!currentUser ? null : currentUser == 1 ? <AdminPostsView /> : currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} /> : <Posts setCurrentPost={setCurrentPost} />}
+      {!currentUser ? null : currentUser == 1 ? <AdminPostsView /> : currentPost ? <OnePost currentPost={currentPost} setCurrentPost={setCurrentPost} currentUser={currentUser} /> : <Posts setCurrentPost={setCurrentPost} currentUser={currentUser} />}
       <footer style={{ height: '2em'}}></footer>
     </div>
   

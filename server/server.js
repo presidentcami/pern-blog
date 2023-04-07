@@ -79,26 +79,27 @@ app.post('/api/newblog', async (req, res) => {
 
 });
 
-// make a post request for a new comment
-app.post('/api/newcomment', async (req, res) => {
+// make a get request for all comments
+// SELECT comment_text, comment_posted, post_id, blog_username FROM blog_comments JOIN blog_users ON blog_comments.user_id=blog_users.blog_user_id;
+app.get('/api/comments', async (req, res) => {
     try {
-        const { commenter_name, comment_text, post_id } = req.body;
-        console.log(req.body)
-        const result = await db.query('INSERT INTO blog_comments (commenter_name, comment_text, post_id) VALUES($1, $2, $3) RETURNING *', 
-            [commenter_name, comment_text, post_id])
-        console.log(result.rows[0])
-        const { rows: comments } = await db.query('SELECT * FROM blog_comments');
+        const { rows: comments } = await db.query('SELECT comment_text, comment_posted, post_id, blog_username FROM blog_comments JOIN blog_users ON blog_comments.user_id=blog_users.blog_user_id;');
         res.send(comments);
     } catch (err) {
         console.error(err.message)
     }
 })
 
-// make a get request for all comments
-
-app.get('/api/comments', async (req, res) => {
+// make a post request for a new comment
+app.post('/api/newcomment', async (req, res) => {
     try {
-        const { rows: comments } = await db.query('SELECT * FROM blog_comments');
+        const { commenter_name, comment_text, post_id, user_id } = req.body;
+        console.log("req.body", req.body)
+        const result = await db.query('INSERT INTO blog_comments (commenter_name, comment_text, post_id, user_id) VALUES($1, $2, $3, $4) RETURNING *', 
+            [commenter_name, comment_text, post_id, user_id])
+        console.log("result.rows[0]", result.rows[0])
+        const { rows: comments } = await db.query('SELECT comment_text, comment_posted, post_id, blog_username FROM blog_comments JOIN blog_users ON post_id=$1', [post_id]);
+        console.log("all comments - result from query", comments)
         res.send(comments);
     } catch (err) {
         console.error(err.message)

@@ -1,10 +1,10 @@
 import AddComment from "./AddComment"
 import { useState, useEffect } from 'react'
 
-const OnePost = ({ currentPost, setCurrentPost }) => {
+const OnePost = ({ currentPost, setCurrentPost, currentUser }) => {
 
     const [comments, setComments] = useState([])
-    console.log("we are in the current post", currentPost)
+    console.log("we are in the current post", currentPost, currentUser)
 
     // need a fetch request to get the comments from the database
     const loadComments = () => {
@@ -35,10 +35,10 @@ const OnePost = ({ currentPost, setCurrentPost }) => {
             <p>{post.content}</p>
             </div>)
         })}
-            <AddComment post_id={currentPost[0].blog_id} setComments={setComments} />
+            <AddComment post_id={currentPost[0].blog_id} setComments={setComments} currentUser={currentUser} />
             {comments.map((comment) => {
-                return (<div key={comment.comment_id}>
-                <p>{comment.commenter_name}</p>
+                return (<div key={comment.comment_id} className="comment-card">
+                <p>{comment.blog_username}</p>
                 <p>{comment.comment_text}</p>
                 </div>)
             })}
