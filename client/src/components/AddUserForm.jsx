@@ -64,7 +64,7 @@ const AddUser = ({ setUsers }) => {
         <form onSubmit={handleSubmit} id="addUsersForm">
 
             <h3>Register for an Account</h3>
-            <label>Username</label>
+            <label>Create Username</label>
             <div style={{ marginTop: '0.9em'}} >
                 <input
                 type="text"

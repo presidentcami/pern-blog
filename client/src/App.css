@@ -32,7 +32,14 @@ ul, li {
 
 .onClick {
   cursor: pointer;
-  
+}
+
+#addUsersForm {
+  border: #eebbc3 solid 2px;
+  width: 50%;
+  margin: 10em;
+  margin-left: 30em;
+  padding: 5em;
 }
 
 .card {
