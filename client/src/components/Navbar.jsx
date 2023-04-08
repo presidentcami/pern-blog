@@ -1,11 +1,26 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Logo from '../assets/BlueTechtonicaWord.png'
+import Logo from '../assets/CamillesBlog.gif'
+import { useState, useEffect } from 'react';
 
 
-function MyNavBar(props) {
+function MyNavBar({ currentUser, users, setUsers, setCurrentUser }) {
 
+  const fetchUsers =() => {
+    fetch("http://localhost:8180/api/users")
+      .then((response) => response.json())
+      .then((users) => {
+        console.log(users)
+        setUsers(users);
+      });
+  }
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  
   return (
     <>
     <Navbar bg="dark" variant="dark" sticky="top">
@@ -13,16 +28,21 @@ function MyNavBar(props) {
         <Navbar.Brand href="/">
         <img
               src={Logo}
-              height="30"
+              height="40"
+              style={{ borderRadius: '40px' }}
               className="d-lg-inline-block"
-              alt="React Bootstrap logo"
+              alt="Camille's Blog logo"
             />
         </Navbar.Brand>
-        <Nav.Link >Your Link</Nav.Link>
+        {/* <Nav.Link >Your Link</Nav.Link> */}
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Cristina Rodriguez</a>
+            Sign in as: 
+              <select style={{ marginLeft: '0.9em' }} onChange={(e) => setCurrentUser(e.target.value)} >
+                <option></option>
+                    {users.map((user) => <option key={user.blog_user_id} value={user.blog_user_id} >{user.blog_username}</option>)}
+                </select>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

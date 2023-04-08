@@ -1,7 +1,9 @@
 .App {
   min-height: 100vh;
-  background-color: rgb(238, 232, 232);
+  background-color: #232946;
   margin: 5px;
+  color: #b8c1ec;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .mybody {
@@ -11,12 +13,11 @@
 }
 
 a.navbar-brand {
-  margin-inline-start: -5em;
+  margin-inline-start: -12em;
 }
 
-.nav-link {
-  color: white !important;
-  margin-left: 5em;
+h1, h2, h3, h4 {
+  font-family: 'Kreon', serif
 }
 
 .list-students {
@@ -25,10 +26,61 @@ a.navbar-brand {
   flex: 1
 }
 
-ul {
+ul, li {
   list-style-type: none;
 }
 
+.onClick {
+  cursor: pointer;
+}
+
+#addUsersForm {
+  border: #eebbc3 solid 2px;
+  width: 50%;
+  margin: 10em;
+  margin-left: 30em;
+  padding: 5em;
+}
+
+.card {
+  width: 60em;
+    margin-left: 10em;
+    background-color: #b8c1ec !important;
+    color: #232946;
+}
+
+#add-blog {
+  margin-left: 10em;
+}
+
+#addNewBlogForm {
+  margin-left: 10em;
+}
+
+#addNewBlogForm.input[type=text] {
+  width: 25%
+}
+.functionalButton {
+  color: #eebbc3 !important;
+  outline-color: #eebbc3 !important;
+  background-color: #232946 !important;
+}
+
+.postContainer {
+  margin: 2em;
+}
+
+.singlePost {
+  margin-right: 15em;
+}
+
+.comment-card {
+  background-color: #98d0f1;
+  color:#232946;
+  margin-top: 1em;
+  width: 30em;
+  padding: 2px;
+}
 
 form {
   flex-direction: column;
@@ -41,7 +93,7 @@ form {
 input[type=text] {
   display: inline-block;
   margin-top: -10px;
-  width: 100%;
+  width: 50%;
   font-size: 15px;
   border-radius: 2px;
   border: 3px solid #98d0f1
